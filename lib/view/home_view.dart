@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:formgenarator/widget/check_box_question.dart';
-import 'package:formgenarator/widget/drop_down_box.dart';
-import 'package:formgenarator/widget/input_taking_model.dart';
+import 'package:formgenarator/view/form_view.dart';
+import 'package:formgenarator/widget/form_widget.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -22,55 +21,13 @@ class _HomeViewState extends State<HomeView> {
           ],
         ),
         actions: [
-          PopupMenuButton(
+          IconButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return const FormView();
+              }));
+            },
             icon: const Icon(Icons.add),
-            itemBuilder: (context) => [
-              PopupMenuItem(
-                value: 1,
-                child: InkWell(
-                  onTap: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) {
-                    //   return const InputTakingModel(
-                    //     headingTitle: 'Create  Questions',
-                    //   );
-                    // }));
-                    showAlertDialog(context);
-                  },
-                  child: const Text('Add Questions'),
-                ),
-              ),
-              PopupMenuItem(
-                value: 2,
-                child: InkWell(
-                  onTap: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) {
-                    //   return const InputTakingModel(
-                    //     headingTitle: 'Create Check Box Questions',
-                    //   );
-                    // }));
-                    showAlertDialog(context);
-                  },
-                  child: const Text('Add Check Box'),
-                ),
-              ),
-              PopupMenuItem(
-                value: 2,
-                child: InkWell(
-                  onTap: () {
-                    // Navigator.push(context,
-                    //     MaterialPageRoute(builder: (context) {
-                    //   return const InputTakingModel(
-                    //     headingTitle: 'Create Drop Box Questions',
-                    //   );
-                    // }));
-                    showAlertDialog(context);
-                  },
-                  child: const Text('Add Drop Box'),
-                ),
-              ),
-            ],
           ),
         ],
       ),
@@ -88,53 +45,12 @@ class _HomeViewState extends State<HomeView> {
             child: Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  DropDownQuestionModel(),
-                  CheckBoxQuestionModel(),
-                ],
+                children: const [FormWidgetCard()],
               ),
             ),
           ),
         ],
       ),
-    );
-  }
-
-  showAlertDialog(BuildContext context) {
-    // Create button
-    Widget okButton = TextButton(
-      onPressed: () {
-        Navigator.of(context).pop();
-      },
-      child: const Text("Add"),
-    );
-    Widget cencelButton = TextButton(
-      onPressed: () {
-        Navigator.of(context).pop();
-        const CheckBoxWidget();
-      },
-      child: const Text("Cencel"),
-    );
-    // Create AlertDialog
-    AlertDialog alert = AlertDialog(
-      title: const Text("Options"),
-      content: const TextField(
-        decoration: InputDecoration(
-          labelText: 'Write a option',
-        ),
-      ),
-      actions: [
-        cencelButton,
-        okButton,
-      ],
-    );
-
-    // show the dialog
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        return alert;
-      },
     );
   }
 }

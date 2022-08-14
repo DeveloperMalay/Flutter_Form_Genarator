@@ -20,6 +20,9 @@ class _CheckBoxQuestionModelState extends State<CheckBoxQuestionModel> {
             style: TextStyle(fontSize: 18),
           ),
           CheckBoxWidget(),
+          CheckBoxWidget(),
+          CheckBoxWidget(),
+          CheckBoxWidget(),
         ],
       ),
     );
@@ -40,7 +43,7 @@ class _CheckBoxWidgetState extends State<CheckBoxWidget> {
   Widget build(BuildContext context) {
     return LabeledCheckbox(
       label: 'This is the label text',
-      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0),
       value: _isSelected,
       onChanged: (bool newValue) {
         setState(() {

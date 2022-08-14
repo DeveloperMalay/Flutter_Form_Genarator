@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:formgenarator/view/home_view.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
