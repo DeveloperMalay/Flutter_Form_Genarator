@@ -29,28 +29,45 @@ class _HomeViewState extends State<HomeView> {
                 value: 1,
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const InputTakingModel(
-                        headingTitle: 'Create Drop Box Questions',
-                      );
-                    }));
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) {
+                    //   return const InputTakingModel(
+                    //     headingTitle: 'Create  Questions',
+                    //   );
+                    // }));
+                    showAlertDialog(context);
                   },
-                  child: const Text('Add Dropdown Box'),
+                  child: const Text('Add Questions'),
                 ),
               ),
               PopupMenuItem(
                 value: 2,
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) {
-                      return const InputTakingModel(
-                        headingTitle: 'Create Check Box Questions',
-                      );
-                    }));
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) {
+                    //   return const InputTakingModel(
+                    //     headingTitle: 'Create Check Box Questions',
+                    //   );
+                    // }));
+                    showAlertDialog(context);
                   },
                   child: const Text('Add Check Box'),
+                ),
+              ),
+              PopupMenuItem(
+                value: 2,
+                child: InkWell(
+                  onTap: () {
+                    // Navigator.push(context,
+                    //     MaterialPageRoute(builder: (context) {
+                    //   return const InputTakingModel(
+                    //     headingTitle: 'Create Drop Box Questions',
+                    //   );
+                    // }));
+                    showAlertDialog(context);
+                  },
+                  child: const Text('Add Drop Box'),
                 ),
               ),
             ],
@@ -80,6 +97,44 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // Create button
+    Widget okButton = TextButton(
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+      child: const Text("Add"),
+    );
+    Widget cencelButton = TextButton(
+      onPressed: () {
+        Navigator.of(context).pop();
+        const CheckBoxWidget();
+      },
+      child: const Text("Cencel"),
+    );
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Options"),
+      content: const TextField(
+        decoration: InputDecoration(
+          labelText: 'Write a option',
+        ),
+      ),
+      actions: [
+        cencelButton,
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }
