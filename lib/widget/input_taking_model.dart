@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:formgenarator/widget/check_box_question.dart';
 
 class InputTakingModel extends StatefulWidget {
   const InputTakingModel({
@@ -13,8 +14,6 @@ class InputTakingModel extends StatefulWidget {
 }
 
 class _InputTakingModelState extends State<InputTakingModel> {
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,8 +23,14 @@ class _InputTakingModelState extends State<InputTakingModel> {
           PopupMenuButton(
             icon: const Icon(Icons.add),
             itemBuilder: (context) => [
-              const PopupMenuItem(
-                child: Text('Add Options'),
+              PopupMenuItem(
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: () {
+                    showAlertDialog(context);
+                  },
+                  child: const Text('Add Options'),
+                ),
               ),
             ],
           )
@@ -50,6 +55,44 @@ class _InputTakingModelState extends State<InputTakingModel> {
           ],
         ),
       ),
+    );
+  }
+
+  showAlertDialog(BuildContext context) {
+    // Create button
+    Widget okButton = TextButton(
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+      child: const Text("Add"),
+    );
+    Widget cencelButton = TextButton(
+      onPressed: () {
+        Navigator.of(context).pop();
+        const CheckBoxWidget();
+      },
+      child: const Text("Cencel"),
+    );
+    // Create AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: const Text("Options"),
+      content: const TextField(
+        decoration: InputDecoration(
+          labelText: 'Write a option',
+        ),
+      ),
+      actions: [
+        cencelButton,
+        okButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
     );
   }
 }

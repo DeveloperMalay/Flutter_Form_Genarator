@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:formgenarator/widget/check_box_question.dart';
+import 'package:formgenarator/widget/drop_down_box.dart';
 import 'package:formgenarator/widget/input_taking_model.dart';
 
 class HomeView extends StatefulWidget {
@@ -55,12 +57,28 @@ class _HomeViewState extends State<HomeView> {
           ),
         ],
       ),
-      body: const Padding(
-        padding: EdgeInsets.symmetric(vertical: 8),
-        child: Text(
-          'Click the plus button to create form',
-          style: TextStyle(fontSize: 20),
-        ),
+      body: Column(
+        children: [
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 8),
+            child: Text(
+              'Click the plus button to create form',
+              style: TextStyle(fontSize: 20),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  DropDownQuestionModel(),
+                  CheckBoxQuestionModel(),
+                ],
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
